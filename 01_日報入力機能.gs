@@ -1,6 +1,6 @@
 /**
  * LINEに何かアクションがあったときに実行される関数
- * @param e {object} - LINEのWebhookイベントオブジェクト（JSONオブジェクト）
+ * @param {object} e - LINEのWebhookイベントオブジェクト（JSONオブジェクト）
  * 
  * 参考：https://developers.line.biz/ja/reference/messaging-api/#webhook-event-objects
  */
@@ -18,7 +18,7 @@ function doPost(e) {
 
 /**
  * LINEのメッセージアクションに対して行う分岐処理
- * @param event {object} - LINEのWebhookイベントオブジェクトから得られたオブジェクト
+ * @param {object} event - LINEのWebhookイベントオブジェクトから得られたオブジェクト
  */
 function handleMessageAction_(event) {
 
@@ -48,7 +48,7 @@ function handleMessageAction_(event) {
 
 /**
  * LINEのポストバックアクションに対して行う分岐処理
- * @param event {object} - LINEのWebhookイベントオブジェクトから得られたオブジェクト
+ * @param {object} event - LINEのWebhookイベントオブジェクトから得られたオブジェクト
  */
 function handlePostbackAction_(event) {
   
@@ -78,7 +78,7 @@ function handlePostbackAction_(event) {
 
 /**
  * 日報入力機能① ボタンテンプレートメッセージで機械を選択する処理
- * @param event {object} - LINEのWebhookイベントオブジェクトから得られたオブジェクト
+ * @param {object} event - LINEのWebhookイベントオブジェクトから得られたオブジェクト
  * @return {object} - リプライメッセージのレスポンスオブジェクト
  */
 function entryMachine_(event) {
@@ -121,8 +121,8 @@ function entryMachine_(event) {
 
 /**
  * 日報入力機能① 日時選択アクションで開始・終了日時を選択する処理
- * @param event {object} - LINEのWebhookイベントオブジェクトから得られたオブジェクト
- * @param option {string} - どの日時選択かを示すオプション文字列
+ * @param {object} event - LINEのWebhookイベントオブジェクトから得られたオブジェクト
+ * @param {string} option - どの日時選択かを示すオプション文字列
  * @return {object} - リプライメッセージのレスポンスオブジェクト
  */
 function entryDatetime_(event, option) {
