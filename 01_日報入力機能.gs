@@ -85,8 +85,6 @@ function entryMachine_(event) {
 
   const replyToken = event.replyToken;
 
-  outputLogs('handleMessageAction: replyToken', replyToken);
-
   const imageUrl = 'https://www.nh-hft.co.jp/wp/wp-content/uploads/2019/09/NH-CX5-CX6.jpg';
   const title = '日報入力';
   const text = 'コンバインを選択してください。';
