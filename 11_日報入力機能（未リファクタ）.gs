@@ -1,82 +1,4 @@
 /**
- * LINEに何かアクションがあったときに実行される関数
- * @param {object} e - LINEのWebhookイベントオブジェクト（JSONオブジェクト）
- * 
- * 参考：https://developers.line.biz/ja/reference/messaging-api/#webhook-event-objects
- */
-function doPost(e) {
-
-  const json = JSON.parse(e.postData.contents);
-  const event = json.events[0]
-  const ev_type = json.events[0].type;
-
-  if(ev_type === 'postback') { handlePostbackAction_(event) };
-  if(ev_type === 'message') { handleMessageAction_(event) };
-
-  return;
-}
-
-/**
- * LINEのメッセージアクションに対して行う分岐処理
- * @param {object} event - LINEのWebhookイベントオブジェクトから得られたオブジェクト
- */
-function handleMessageAction_(event) {
-
-  const message = event.message.text;
-
-  if(message === '日報入力') {
-    entryMachine_(event);
-    return;
-  }
-
-  if(message === '確認') {
-    // [TODO] 関数作成
-    // comfirmRecords_(event);
-    return;
-  }
-
-  if(message === '集計') {
-    // [TODO]関数作成
-    // aggrigateRecords_(event);
-    return;
-  }
-
-  return;
-
-}
-
-
-/**
- * LINEのポストバックアクションに対して行う分岐処理
- * @param {object} event - LINEのWebhookイベントオブジェクトから得られたオブジェクト
- */
-function handlePostbackAction_(event) {
-  
-  const postbackData = event.postback.data;
-  const postback = postbackData.split('=')[0];
-
-  if(postback === 'chooseMachine') {
-    entryDatetime_(event, 'start');
-    return;
-  };
-
-  if(postback === 'chooseStartTime') {
-    entryDatetime_(event, 'end');
-    return;
-  }
-
-  if(postback === 'chooseEndTime') {
-    // [TODO]confirmDailyReport_関数を実装
-    lineClient.simpleBroadcastMessage('Done!');
-    return;
-  }
-
-  return;
-
-}
-
-
-/**
  * 日報入力機能① ボタンテンプレートメッセージで機械を選択する処理
  * @param {object} event - LINEのWebhookイベントオブジェクトから得られたオブジェクト
  * @return {object} - リプライメッセージのレスポンスオブジェクト
@@ -89,7 +11,7 @@ function entryMachine_(event) {
   const title = '日報入力';
   const text = 'コンバインを選択してください。';
 
-  const machinesArr = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_INFO.LISTS.NAME).getRange(2, 1, 2).getValues().flat();
+  const machinesArr = SS.getSheetByName(SHEET_INFO.LISTS.NAME).getRange(2, 1, 2).getValues().flat();
 
   const actions = [
     {

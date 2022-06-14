@@ -4,11 +4,16 @@
 const lineClient = LineBotTool.createClient(LINE_ACCESS_TOKEN);
 
 /**
+ * グローバル定数
+ */
+const SS =SpreadsheetApp.getActiveSpreadsheet();
+
+/**
  * シートとカラムの情報
  */
 const SHEET_INFO = Object.freeze({
   REPORTS: {NAME: '作業日報', HEADER_ROWS: 1},
-  WORKERS: {NAME: '作業者情報', HEADER_ROWS: 1},
+  USERS: {NAME: '作業者情報', HEADER_ROWS: 1},
   LISTS: {NAME: 'lists', HEADER_ROWS: 1},
   LOGS: {NAME: 'logs', HEADER_ROWS: 1}
 });
@@ -21,7 +26,7 @@ const COLUMN_INFO = Object.freeze({
     WORKER: {COL: 'D', NO: 4, NAME: '作業者'},
     MINUTES: {COL: 'E', NO: 5, NAME: '作業時間'},    
   },
-  WORKERS: {
+  USERS: {
     USER_ID: {COL: 'A', NO: 1, NAME: 'LINEユーザーID'},
     WORKER_NAME: {COL: 'B', NO: 2, NAME: '作業者'},
     TMP_S_TIME: {COL: 'C', NO: 3, NAME: 'tmp_開始時刻'},
