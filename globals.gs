@@ -1,12 +1,14 @@
 /**
- * ライブラリ「LineBotTool」の初期設定
- */
-const lineClient = LineBotTool.createClient(LINE_ACCESS_TOKEN);
-
-/**
  * グローバル定数
  */
 const SS =SpreadsheetApp.getActiveSpreadsheet();
+const PROP = PropertiesService.getScriptProperties().getProperties();
+
+/**
+ * ライブラリ「LineBotTool」の初期設定
+ */
+const lineClient = LineBotTool.createClient(PROP.LINE_ACCESS_TOKEN);
+
 
 /**
  * シートとカラムの情報
@@ -20,10 +22,10 @@ const SHEET_INFO = Object.freeze({
 
 const COLUMN_INFO = Object.freeze({
   REPORTS: {
-    S_TIME: {COL: 'A', NO: 1, NAME: '開始時刻'},
-    E_TIME: {COL: 'B', NO: 2, NAME: '終了時刻'},
-    MACHINE: {COL: 'C', NO: 3, NAME: '作業機'},
-    WORKER: {COL: 'D', NO: 4, NAME: '作業者'},
+    S_TIME: {COL: 'A', NO: 2, NAME: '開始時刻'},
+    E_TIME: {COL: 'B', NO: 3, NAME: '終了時刻'},
+    MACHINE: {COL: 'C', NO: 4, NAME: '作業機'},
+    WORKER: {COL: 'D', NO: 1, NAME: '作業者'},
     MINUTES: {COL: 'E', NO: 5, NAME: '作業時間'},    
   },
   USERS: {
